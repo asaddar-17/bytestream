@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/identity/userinfo"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "id": 7564,
+      "name": "Joe Bloggs",
+      "email": "joe.bloggs@noemail.notreal",
+      "roles": ["premium"]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/availability/availabilityinfo/([0-9]+)"
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "video_id": 46325,
+      "availability_window": {
+        "from": "2025-11-05",
+        "to": "2026-05-04"
+      }
+    }
+  }
+}
