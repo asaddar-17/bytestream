@@ -6,9 +6,10 @@ information based on:
 1.  The user identity (premium or standard)
 2.  The video availability window
 
-It integrates with: - An Identity Service (mocked with WireMock) - An
-Availability Service (mocked with WireMock) - Redis (for caching
-identity and availability responses)
+It integrates with: 
+- An Identity Service (mocked with WireMock) 
+- An Availability Service (mocked with WireMock) 
+- Redis (for caching identity and availability responses)
 
 ------------------------------------------------------------------------
 
@@ -23,7 +24,7 @@ http://localhost:8080/videos/46325
 
 The service:
 
-1.  Validates the Authorization: Bearer `<token>`{=html} header
+1.  Validates the Authorization: Bearer `<token>` header
 2.  Retrieves user identity (from cache or Identity service)
 3.  Retrieves availability window (from cache or Availability service)
 4.  Checks if the video is currently within its availability window
@@ -33,30 +34,17 @@ The service:
 
 ------------------------------------------------------------------------
 
-## Architecture Overview
-
-Redis: - Caches Identity responses (keyed by bearer token) - Caches
-Availability responses (keyed by videoID) - Reduces repeated upstream
-calls
-
-WireMock: - Simulates Identity Service - Simulates Availability
-Service - Allows easy testing of different scenarios (premium,
-unauthorized, unavailable, etc.)
-
-Video Metadata: - Hardcoded in internal/domain/video.go - This is
-intentional per assessment requirements (no video datastore provided)
-
-------------------------------------------------------------------------
-
 ## Running Locally
 
 Start everything:
 
 docker compose up --build
 
-Services started: - App → http://localhost:8080 - Identity Mock →
-http://localhost:18081 - Availability Mock → http://localhost:18082 -
-Redis → localhost:6379
+Services started: 
+- App → http://localhost:8080 
+- Identity Mock → http://localhost:18081 
+- Availability Mock → http://localhost:18082 
+- Redis → localhost:6379
 
 ------------------------------------------------------------------------
 
@@ -77,13 +65,21 @@ Edit: docker/wiremock/availability/mappings/availability.json
 
 Change the date range so the current date is outside the window.
 
-Then recreate the availability mock container:
-
-docker compose restart availability-mock
-
-If changes are not reflected:
+Then force recreate the availability mock container:
 
 docker compose up -d --force-recreate availability-mock
+
+------------------------------------------------------------------------
+
+Make Identity Standard:
+
+Edit: docker/wiremock/availability/mappings/identity.json
+
+Change the roles array to empty array.
+
+Then force recreate the identity mock container:
+
+docker compose up -d --force-recreate identity-mock
 
 ------------------------------------------------------------------------
 
@@ -97,8 +93,8 @@ docker/wiremock/\*\*/mappings/
 
 You must restart the corresponding mock container:
 
-docker compose restart identity-mock docker compose restart
-availability-mock
+docker compose up -d --force-recreate identity-mock
+docker compose up -d --force-recreate availability-mock
 
 The application container does not need to be restarted when mocks
 change.
@@ -120,21 +116,18 @@ SKIP_CACHE: "true"
 When enabled: - The service bypasses Redis - Calls upstream mocks
 directly
 
+For local tesing SKIP_CACHE is set to "false"
+
 ------------------------------------------------------------------------
 
 ## Error Handling
 
-Upstream 401 / 403 (Identity) → 401 Unauthorized\
-Upstream 404 (Availability) → 404 Not Found\
-Other upstream errors → 502 Bad Gateway\
-Outside availability window → 404 Not Available
+- Upstream 401 / 403 (Identity) → 401 Unauthorized
+- Upstream 404 (Availability) → 404 Not Found
+- Other upstream errors → 502 Bad Gateway
+- Outside availability window → 404 Not Available
 
 ------------------------------------------------------------------------
 
-## Design Notes
-
--   Clean separation of HTTP layer, clients, cache, and domain logic
--   Context-aware upstream calls
--   Graceful cache failure handling (cache errors do not fail request)
--   Explicit upstream error mapping
--   Structured project layout suitable for production-style services
+## Local E2E Test
+Run `go test ./tests -v` to execute a local end-to-end test against the running Docker environment (requires `docker compose up`).

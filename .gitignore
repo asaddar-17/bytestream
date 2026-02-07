@@ -1,43 +1,21 @@
-=========================
+# Binaries
+bin/
+tmp/
+*.exe
+*.out
+*.test
 
-Go
+# OS
+.DS_Store
+Thumbs.db
 
-=========================
+# IDE
+.vscode/
+.idea/
 
-bin/ tmp/ .exe .exe~ .out .test
-
-Vendor (if you are not committing vendor)
-
-vendor/
-
-=========================
-
-OS Files
-
-=========================
-
-.DS_Store Thumbs.db
-
-=========================
-
-IDE / Editor
-
-=========================
-
-.vscode/ .idea/
-
-=========================
-
-Logs
-
-=========================
-
+# Logs
 *.log
 
-=========================
-
-Docker
-
-=========================
-
-docker-data/
+# Air (if using)
+.air.toml
+tmp/
