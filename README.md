@@ -19,8 +19,7 @@ GET /videos/{videoID}
 
 Example:
 
-curl -sS -i -H "Authorization: Bearer anytoken"
-http://localhost:8080/videos/46325
+`curl -sS -i -H "Authorization: Bearer anytoken" http://localhost:8080/videos/46325`
 
 The service:
 
@@ -52,8 +51,7 @@ Services started:
 
 Premium (default mock behavior):
 
-curl -sS -i -H "Authorization: Bearer anytoken"
-http://localhost:8080/videos/46325
+`curl -sS -i -H "Authorization: Bearer anytoken" http://localhost:8080/videos/46325`
 
 By default, the Identity mock returns a premium role.
 
@@ -67,7 +65,7 @@ Change the date range so the current date is outside the window.
 
 Then force recreate the availability mock container:
 
-docker compose up -d --force-recreate availability-mock
+`docker compose up -d --force-recreate availability-mock`
 
 ------------------------------------------------------------------------
 
@@ -79,7 +77,7 @@ Change the roles array to empty array.
 
 Then force recreate the identity mock container:
 
-docker compose up -d --force-recreate identity-mock
+`docker compose up -d --force-recreate identity-mock`
 
 ------------------------------------------------------------------------
 
@@ -93,8 +91,8 @@ docker/wiremock/\*\*/mappings/
 
 You must restart the corresponding mock container:
 
-docker compose up -d --force-recreate identity-mock
-docker compose up -d --force-recreate availability-mock
+`docker compose up -d --force-recreate identity-mock`
+`docker compose up -d --force-recreate availability-mock`
 
 The application container does not need to be restarted when mocks
 change.
