@@ -19,3 +19,4 @@ Thumbs.db
 # Air (if using)
 .air.toml
 tmp/
+.DS_Store
