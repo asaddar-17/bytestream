@@ -59,7 +59,7 @@ By default, the Identity mock returns a premium role.
 
 Make Video Unavailable:
 
-Edit: docker/wiremock/availability/mappings/availability.json
+Edit: wiremock/availability/mappings/availability.json
 
 Change the date range so the current date is outside the window.
 
@@ -71,7 +71,7 @@ Then force recreate the availability mock container:
 
 Make Identity Standard:
 
-Edit: docker/wiremock/availability/mappings/identity.json
+Edit: wiremock/availability/mappings/identity.json
 
 Change the roles array to empty array.
 
@@ -87,7 +87,7 @@ WireMock loads mappings at container startup.
 
 If you modify any file under:
 
-docker/wiremock/\*\*/mappings/
+wiremock/\*\*/mappings/
 
 You must restart the corresponding mock container:
 
