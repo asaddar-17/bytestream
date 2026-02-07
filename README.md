@@ -37,7 +37,7 @@ The service:
 
 Start everything:
 
-docker compose up --build
+`docker compose up --build`
 
 Services started: 
 - App → http://localhost:8080 
@@ -101,9 +101,9 @@ change.
 
 ## Caching Behavior
 
--   Identity is cached using: identity:`<bearer-token>`{=html}
+-   Identity is cached using: identity:`<bearer-token>`
 
--   Availability is cached using: availability:`<videoID>`{=html}
+-   Availability is cached using: availability:`<videoID>`
 
 Cache TTL is configurable via environment variables.
 
