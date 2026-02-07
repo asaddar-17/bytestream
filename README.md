@@ -128,5 +128,5 @@ For local tesing SKIP_CACHE is set to "false"
 
 ------------------------------------------------------------------------
 
-## Local E2E Test
-Run `go test ./tests -v` to execute a local end-to-end test against the running Docker environment (requires `docker compose up`).
+## Tests
+Run `go test ./... -v` to execute a local end-to-end test against the running Docker environment (requires `docker compose up`).
