@@ -10,6 +10,7 @@ It integrates with:
 - An Identity Service (mocked with WireMock) 
 - An Availability Service (mocked with WireMock) 
 - Redis (for caching identity and availability responses)
+- A hardcoded video store defined in internal/domain/video.go
 
 ------------------------------------------------------------------------
 
