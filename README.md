@@ -110,12 +110,10 @@ Cache TTL is configurable via environment variables.
 
 You can disable cache completely:
 
-SKIP_CACHE: "true"
+SKIP_CACHE: "true", by default it's set to true for local tesing
 
 When enabled: - The service bypasses Redis - Calls upstream mocks
 directly
-
-For local tesing SKIP_CACHE is set to "false"
 
 ------------------------------------------------------------------------
 
